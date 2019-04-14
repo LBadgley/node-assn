@@ -1,5 +1,5 @@
 // const exec = require('child_process').exec;
-const querystring = require('querystring');
+// const querystring = require('querystring');
 const fs = require('fs');
 const formidable = require('formidable');
 
@@ -25,7 +25,7 @@ function start(response) {
   response.end();
 }
 
-function upload(response, postData) {
+function upload(response, request) {
   console.log('Request handler "upload" was called.');
 
   const form = new formidable.IncomingForm();
@@ -35,11 +35,12 @@ function upload(response, postData) {
     fs.rename(files.upload.path, '/tmp/test.png', function(error) {
       if(error) {
         fs.unlink('/tmp/test.png');
-        fs.rename(files.upload.path, '/tmp/test.png');
+        fs.rename(files.upload.path, './tmp/test.png');
       }
     });
     response.writeHead(225, { 'Content-Type': 'text/plain' });
-    response.write('You\'ve send: ' + querystring.parse(postData).text);
+    response.write('received image:</br>');
+    response.write('<img src=\'/show\' />');
     response.end();
   });
 }
