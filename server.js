@@ -11,6 +11,5 @@ function start(route, handle) {
   console.log('Server has started.');
 }
 
-
 exports.start = start;
 

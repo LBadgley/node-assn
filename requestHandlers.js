@@ -1,5 +1,3 @@
-// const exec = require('child_process').exec;
-// const querystring = require('querystring');
 const fs = require('fs');
 const formidable = require('formidable');
 
